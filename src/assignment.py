@@ -106,11 +106,46 @@ if __name__ == '__main__':
 
             # TODO ensure it only does this when someone is hailing a taxi.
             # That is, an arm is above their head.
-            hail_taxi(image)
+            
 
             # Debugging statement: remove before demonstration.
-            # print([(POSE_COCO_BODY_PARTS[k], v.x, v.y) for k,v in human.body_parts.items()])
+            #print([(POSE_COCO_BODY_PARTS[k], v.x, v.y) for k,v in human.body_parts.items()])
 
+            
+            NeckY = 0
+            RElbowY = 0
+            LElbowY = 0
+            for k,v in human.body_parts.items():
+                print([(POSE_COCO_BODY_PARTS[k], v.x, v.y)])
+                if POSE_COCO_BODY_PARTS[k] == "Neck":
+                    NeckY = v.y
+                if POSE_COCO_BODY_PARTS[k] == "RElbow":
+                    RElbowY = v.y
+                if POSE_COCO_BODY_PARTS[k] == "LElbow":
+                    LElbowY = v.y
+            if RElbowY > NeckY:
+                hail_taxi(image)
+            elif LElbowY > NeckY:
+                hail_taxi(image)
+
+                 
+            NoseY = 0
+            RElbowY = 0
+            LElbowY = 0
+            for k,v in human.body_parts.items():
+                print([(POSE_COCO_BODY_PARTS[k], v.x, v.y)])
+                if POSE_COCO_BODY_PARTS[k] == "Nose":
+                    NoseY = v.y
+                if POSE_COCO_BODY_PARTS[k] == "RElbow":
+                    RElbowY = v.y
+                if POSE_COCO_BODY_PARTS[k] == "LElbow":
+                    LElbowY = v.y
+            if RElbowY > NeckY:
+                hail_taxi(image)
+            elif LElbowY > NeckY:
+                hail_taxi(image)
+
+        #neck eye ear 
         # drawing lines on an image
         image = TfPoseEstimator.draw_humans(image, humans, imgcopy=False)
 
