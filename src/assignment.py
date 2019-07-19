@@ -128,22 +128,20 @@ if __name__ == '__main__':
             elif LElbowY > NeckY:
                 hail_taxi(image)
 
-                 
-            NoseY = 0
-            RElbowY = 0
-            LElbowY = 0
+        NoseY = 0
+            RightsideY = 0
+            LeftsideY = 0
             for k,v in human.body_parts.items():
                 print([(POSE_COCO_BODY_PARTS[k], v.x, v.y)])
                 if POSE_COCO_BODY_PARTS[k] == "Nose":
                     NoseY = v.y
-                if POSE_COCO_BODY_PARTS[k] == "RElbow":
-                    RElbowY = v.y
-                if POSE_COCO_BODY_PARTS[k] == "LElbow":
-                    LElbowY = v.y
-            if RElbowY > NeckY:
+                if POSE_COCO_BODY_PARTS[k] == "Rightside":
+                    RidesideY = v.y
+                if POSE_COCO_BODY_PARTS[k] == "Leftside":
+                    LeftsideY = v.y
+            if LeftsideY < NoseY or RightsideY < NoseY:
                 hail_taxi(image)
-            elif LElbowY > NeckY:
-                hail_taxi(image)
+
 
         #neck eye ear 
         # drawing lines on an image
