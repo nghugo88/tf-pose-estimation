@@ -111,7 +111,7 @@ if __name__ == '__main__':
             # Debugging statement: remove before demonstration.
             #print([(POSE_COCO_BODY_PARTS[k], v.x, v.y) for k,v in human.body_parts.items()])
 
-            
+            #Taxi
             NeckY = 0
             RElbowY = 0
             LElbowY = 0
