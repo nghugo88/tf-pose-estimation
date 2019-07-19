@@ -11,6 +11,8 @@ from networks import get_graph_path, model_wh
 
 import platform
 import os
+
+#Garry Zhang
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 logger = logging.getLogger('TfPoseEstimator-WebCam')
@@ -106,12 +108,12 @@ if __name__ == '__main__':
 
             # TODO ensure it only does this when someone is hailing a taxi.
             # That is, an arm is above their head.
-            
+            hail_taxi(image)
 
             # Debugging statement: remove before demonstration.
-            #print([(POSE_COCO_BODY_PARTS[k], v.x, v.y) for k,v in human.body_parts.items()])
-
+            # print([(POSE_COCO_BODY_PARTS[k], v.x, v.y) for k,v in human.body_parts.items()])
             
+
             NeckY = 0
             RElbowY = 0
             LElbowY = 0
@@ -121,15 +123,31 @@ if __name__ == '__main__':
                     NeckY = v.y
                 if POSE_COCO_BODY_PARTS[k] == "RElbow":
                     RElbowY = v.y
-                if POSE_COCO_BODY_PARTS[k] == "LElbow":
+                if POSE_COCO_BODY_PARTS[k] == "Lelbow":
                     LElbowY = v.y
-            if RElbowY < NeckY:
+            if RElbow > NeckY:
                 hail_taxi(image)
-            elif LElbowY < NeckY:
+            elif LElbowY > NeckY:
                 hail_taxi(image)
 
-        
-        #neck eye ear 
+
+            NoseY = 0 
+            RElbowY = 0
+            LElbowY = 0
+            for k,v in human.body_parts.items():
+                print([(POSE_COCO_BODY_PARTS[k], v.x, v.y)]) 
+                if POSE_COCO_BODY_PARTS[k] == "Nose":
+                    NoseY = v.y
+                if POSE_COCO_BODY_PARTS[k] == "RElbow": 
+                    RElbowY = v.y
+                if POSE_COCO_BODY_PARTS[k] == "LElbow":
+                    LElbowY = v.y
+            if RElbowY > NeckY:
+                hail_taxi(image)
+            elif LElbow > NeckY: 
+                hail_taxi(image)
+
+                      
         # drawing lines on an image
         image = TfPoseEstimator.draw_humans(image, humans, imgcopy=False)
 
