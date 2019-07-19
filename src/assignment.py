@@ -125,7 +125,7 @@ if __name__ == '__main__':
                     RElbowY = v.y
                 if POSE_COCO_BODY_PARTS[k] == "Lelbow":
                     LElbowY = v.y
-            if RElbow > NeckY:
+            if RElbowY > NeckY:
                 hail_taxi(image)
             elif LElbowY > NeckY:
                 hail_taxi(image)
