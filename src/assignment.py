@@ -123,13 +123,12 @@ if __name__ == '__main__':
                     RElbowY = v.y
                 if POSE_COCO_BODY_PARTS[k] == "LElbow":
                     LElbowY = v.y
-            if RElbowY > NeckY:
+            if RElbowY < NeckY:
                 hail_taxi(image)
-            elif LElbowY > NeckY:
+            elif LElbowY < NeckY:
                 hail_taxi(image)
 
-
-
+        
         #neck eye ear 
         # drawing lines on an image
         image = TfPoseEstimator.draw_humans(image, humans, imgcopy=False)
